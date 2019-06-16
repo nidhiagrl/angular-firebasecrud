@@ -9,8 +9,8 @@ example works!
     </li>
   </ul>
 </div>
-
-<input #node (keyup.enter)="addNode(node.value)" (blur)="addNode(node.value); node.value='' " />
-<button (click)= "addNode(node.value)">
+<input #key />
+<input #node  />
+<button (click)= "addNode(key.value,node.value)">
   
   Add</button>

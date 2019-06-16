@@ -9,27 +9,33 @@ import { Observable } from 'rxjs';
   
 })
 export class ExampleComponent implements OnInit {
- items: AngularFireList<any[]>;
+ items:any[];
+ keysR :any[]
   //items: Observable<any[]>;
  //items:any;
   constructor(private db: AngularFireDatabase) {
-   
-  }
-  ngOnInit() {
-    this.db.list('/')
+       this.db.list('/')
       .valueChanges()
       .subscribe(val => {
         this.items = val;
-        // console.log(val);
+        console.log(val);
+        
       });
+  }
+  ngOnInit() {
+       
     //  this.db.database.ref('/').on('child_added',(snapshot)=>{
-    //    this.items.push(snapshot.val());
-    //  })
+    //    this.items=snapshot.val();
+    //      console.log(this.items);
+
+    //   })
     // this.items = this.db.list('/');
     // console.log(this.items);
   }
-  addNode(value: any[]): void {
-    this.items.push(value);
-  }
+   addNode(k:string,value: any[]): void {
+     this.db.database.ref().child(k).set(value);
+    // this.items.push(value);
+    
+   }
 
 }
